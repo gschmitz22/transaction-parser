@@ -10,7 +10,7 @@ class Transaction < ApplicationRecord
 
   def self.import(file)
     errors = []
-    CSV.foreach(file) do |row|
+    CSV.foreach(file.path) do |row|
       @data.push(row)
     end
     remove_column(['Notes', 'Labels', 'Original Description', 'Transaction Type'])
@@ -27,7 +27,6 @@ class Transaction < ApplicationRecord
 
     @data.each do |date, description, amount, category, account|
       begin
-        binding.pry
         Transaction.create(date: Date.strptime(date, '%m/%d/%Y'), description: description, amount: amount, category: Category.find_by_name(category), account: Account.find_by_name(account))
       rescue ArgumentError
         errors.push [date, description, amount, category, amount]
@@ -40,9 +39,9 @@ class Transaction < ApplicationRecord
 
   def self.remove_column(names)
     names.each do |name|
-      index = @data[0].index(name)
+      location = @data[0].index(name)
       @data.each do |row|
-        row.delete_at(index)
+        row.delete_at(location)
       end
     end
   end
@@ -64,7 +63,7 @@ class Transaction < ApplicationRecord
   end
 
   def self.unsaved_file(headers, errors, file)
-    CSV.open(file, 'wb') do |csv|
+    CSV.open(file.path, 'wb') do |csv|
       csv << headers
       errors.each do |row|
         csv << row

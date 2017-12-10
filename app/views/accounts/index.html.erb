@@ -1,4 +1,8 @@
-<table class='table table-dark table-striped'>
+<div class='container'>
+  <h1 class='display-4 float-left'>Accounts</h1>
+  <button class='btn btn-dark float-right create-button' href='/accounts/new'>Create</button>
+</div>
+<table class='table table-dark table-striped table-bordered table-hover table-sm'>
   <thead>
     <tr>
       <th scope='col'>Name</th>
@@ -7,9 +11,10 @@
   </thead>
   <tbody>
     <% @accounts.each do |account| %>
-      <tr>
+      <tr data-link="<%= edit_account_path(account) %>">
         <td><%= account.name %></td>
-        <td><%= account.amount %></td>
+        <td><%= number_with_precision(account.amount, precision: 2, delimiter: ',') %></td>
+        <td><a href="<%= edit_account_path(account) %>">Edit</a></td>
       </tr>
     <% end %>
   </tbody>

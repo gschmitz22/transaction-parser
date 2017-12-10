@@ -5,7 +5,7 @@ class CreateTransactions < ActiveRecord::Migration[5.1]
       t.string :description
       t.belongs_to :account, null: false
       t.belongs_to :category, null: false
-      t.decimal :amount, null: false
+      t.decimal :amount, precision:10, scale: 2, null: false
 
       t.timestamps
     end

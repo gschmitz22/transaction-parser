@@ -12,30 +12,30 @@
 
 ActiveRecord::Schema.define(version: 20171205030001) do
 
-  create_table 'accounts', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
-    t.string 'name', null: false
-    t.decimal 'amount', precision: 10, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'categories', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
-    t.string 'name', null: false
-    t.string 'description'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'transactions', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
-    t.date 'date', null: false
-    t.string 'description'
-    t.bigint 'account_id', null: false
-    t.bigint 'category_id', null: false
-    t.decimal 'amount', precision: 10, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['account_id'], name: 'index_transactions_on_account_id'
-    t.index ['category_id'], name: 'index_transactions_on_category_id'
+  create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "date", null: false
+    t.string "description"
+    t.bigint "account_id", null: false
+    t.bigint "category_id", null: false
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_transactions_on_account_id"
+    t.index ["category_id"], name: "index_transactions_on_category_id"
   end
 
 end
