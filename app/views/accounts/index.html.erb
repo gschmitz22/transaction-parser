@@ -1,0 +1,16 @@
+<table class='table table-dark table-striped'>
+  <thead>
+    <tr>
+      <th scope='col'>Name</th>
+      <th scope='col'>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @accounts.each do |account| %>
+      <tr>
+        <td><%= account.name %></td>
+        <td><%= account.amount %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

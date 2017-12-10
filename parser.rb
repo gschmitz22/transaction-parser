@@ -22,7 +22,7 @@ def remove_category(array, names)
     category = array[0].index('Category')
     description = array[0].index('Description')
     array.delete_if do |row|
-      row[category] == name && !(row[description] == "Venmo" && !(row[description] == "Line Transfer Acc"))
+      row[category] == name && !(row[description] == 'Venmo' && !(row[description] == 'Line Transfer Acc'))
     end
   end
   array

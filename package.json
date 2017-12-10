@@ -1,5 +1,5 @@
 {
-  "name": "transaction_parser",
-  "private": true,
-  "dependencies": {}
+  'name': 'transaction_parser',
+  'private': true,
+  'dependencies': {}
 }

@@ -10,19 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202141901) do
+ActiveRecord::Schema.define(version: 20171205030001) do
 
-  create_table "categorys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-    t.string "description"
+  create_table 'accounts', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
+    t.string 'name', null: false
+    t.decimal 'amount', precision: 10, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.date "date"
-    t.string "description"
-    t.bigint "category_id"
-    t.decimal "amount", precision: 10
-    t.index ["category_id"], name: "index_transactions_on_category_id"
+  create_table 'categories', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
+    t.string 'name', null: false
+    t.string 'description'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
+  create_table 'transactions', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
+    t.date 'date', null: false
+    t.string 'description'
+    t.bigint 'account_id', null: false
+    t.bigint 'category_id', null: false
+    t.decimal 'amount', precision: 10, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['account_id'], name: 'index_transactions_on_account_id'
+    t.index ['category_id'], name: 'index_transactions_on_category_id'
   end
 
 end
