@@ -1,4 +1,42 @@
 <div class="container">
-  <h1>Home View</h1>
-  <p>This view will eventually contain an overview of the current financial situation</p>
+  <h1 class='display-4 float-left'>Monthly View</h1>
+  <div class="form-group float-right margin-top" >
+    <%= form_tag '/', method: "get", id: "month", class: "form-control" do %>
+      <%= label_tag "Month" %>
+      <%= select "Months", "month", options_for_select({January: 1,
+                                                        February: 2,
+                                                        March: 3,
+                                                        April: 4,
+                                                        May: 5,
+                                                        June: 6,
+                                                        July: 7,
+                                                        August: 8,
+                                                        September: 9,
+                                                        October: 10,
+                                                        November: 11,
+                                                        December: 12}, selected: @month), {prompt: 'Select month'}, {class: 'form-control'} %>
+      <%= submit_tag "Update", class: 'btn btn-primary btn-sm margin-top', style: 'margin-left: 80px;' %>
+    <% end %>
+  </div>
+
+  <table class='table table-dark table-striped'>
+    <thead>
+    <tr>
+      <th scope='col'>Name</th>
+      <th scope='col'>Description</th>
+      <th scope='col'>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @categories.each do |category| %>
+      <%= puts @categories %>
+      <tr>
+        <td><%= category[:name] %></td>
+        <td><%= category[:description] %></td>
+        <td><%= category[:amount] %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
 </div>
