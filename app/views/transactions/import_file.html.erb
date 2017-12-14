@@ -1,0 +1,7 @@
+<div class='container'>
+<h2> Import Data</h2>
+  <%= form_tag import_transactions_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag 'Import CSV' %>
+  <% end %>
+</div>
