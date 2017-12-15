@@ -30,7 +30,7 @@ class Category < ApplicationRecord
   def self.combine(sums)
     result = []
     Category.all.each do |cat|
-      result.push(name: cat[:name], description: cat[:description], amount: sums[cat[:name]].to_f)
+      result.push(name: cat[:name], amount: sums[cat[:name]].to_f)
     end
 
     result
