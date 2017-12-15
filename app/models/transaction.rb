@@ -38,7 +38,7 @@ class Transaction < ApplicationRecord
     names.each do |name|
       location = @data[0].index(name)
       @data.each do |row|
-        row.delete_at(location)
+        row.delete_at(location) unless location.nil?
       end
     end
   end
@@ -79,6 +79,7 @@ class Transaction < ApplicationRecord
     convert_to_account('CapFed Savings', 'Savings')
     # convert_to_account('Trek Card', '')
     convert_to_account('Intrust Checking', 'Checking Account')
+    convert_to_account('Intrust Savings', 'Savings Account(Closed)')
   end
 
   def self.transaction_by_month(month)
