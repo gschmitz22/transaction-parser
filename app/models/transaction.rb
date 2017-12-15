@@ -27,11 +27,11 @@ class Transaction < ApplicationRecord
                            category: Category.find_by_name(category),
                            account: Account.find_by_name(account))
       rescue ArgumentError
-        errors.push [date, description, amount, category, amount]
+        errors.push [date, description, account, category, amount]
       end
     end
 
-    unsaved_file(@data[0], errors)
+    unsaved_file(errors)
   end
 
   def self.remove_column(names)
@@ -59,9 +59,8 @@ class Transaction < ApplicationRecord
     end
   end
 
-  def self.unsaved_file(headers, errors)
+  def self.unsaved_file(errors)
     CSV.open('notAdded.csv', 'wb') do |csv|
-      csv << headers
       errors.each do |row|
         csv << row
       end
@@ -70,7 +69,7 @@ class Transaction < ApplicationRecord
 
   def self.prepare_data
     remove_column(['Notes', 'Labels', 'Original Description', 'Transaction Type'])
-    convert_to_category('Bill', ['Auto Insurance', 'Television', 'Hair', 'Auto Payment'])
+    convert_to_category('General Bills', ['Auto Insurance', 'Television', 'Hair', 'Auto Payment'])
     convert_to_category('Tithing', ['Charity'])
     convert_to_category('Restaurants', ['Fast Food', 'Food & Dining', 'Alcohol & Bars'])
     convert_to_category('Gas', ['Gas & Fuel'])

@@ -28,14 +28,15 @@
         <tr>
           <th scope='col'>Name</th>
           <th scope='col'>Amount</th>
+          <th scope='col'>Last Amount</th>
         </tr>
         </thead>
         <tbody>
         <% @categories.each do |category| %>
-          <%= puts @categories %>
           <tr>
             <td><%= category[:name] %></td>
             <td><%= category[:amount] %></td>
+            <td><%= category[:last_amount] %></td>
           </tr>
         <% end %>
         </tbody>

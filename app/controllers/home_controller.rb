@@ -6,7 +6,7 @@ class HomeController < ApplicationController
              else
                Date.today.month
              end
-    @categories = Category.total_up_transactions_by_month @month
+    @categories = Category.monthly_totals(@month.to_i)
   end
 
   def home_params

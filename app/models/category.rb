@@ -19,20 +19,29 @@ class Category < ApplicationRecord
                    else
                      Transaction.transaction_by_month(month)
                    end
-
     transactions.each do |transaction|
       sums[transaction.category.name] += transaction.amount
     end
-
-    combine(sums)
+    sums
   end
 
-  def self.combine(sums)
+  def self.combine(month1, month2)
     result = []
     Category.all.each do |cat|
-      result.push(name: cat[:name], amount: sums[cat[:name]].to_f)
+      result.push(name: cat[:name], amount: month1[cat[:name]].to_f, last_amount: month2[cat[:name]].to_f)
     end
 
     result
+  end
+
+  def self.monthly_totals(month)
+    month1 = total_up_transactions_by_month(month)
+    month2 = total_up_transactions_by_month(previous_month(month))
+
+    combine(month1, month2)
+  end
+
+  def self.previous_month(month)
+    month == 1 ? 12 : month - 1
   end
 end
