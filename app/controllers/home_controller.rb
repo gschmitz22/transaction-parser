@@ -7,6 +7,7 @@ class HomeController < ApplicationController
                Date.today.month
              end
     @categories = Category.monthly_totals(@month.to_i)
+    @transactions = Transaction.find_by_month(@month.to_i)
   end
 
   def home_params

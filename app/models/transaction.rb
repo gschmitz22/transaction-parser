@@ -82,7 +82,7 @@ class Transaction < ApplicationRecord
     convert_to_account('Intrust Savings', 'Savings Account(Closed)')
   end
 
-  def self.transaction_by_month(month)
+  def self.find_by_month(month)
     Transaction.where('extract(month from date) = ?', month).all
   end
 end

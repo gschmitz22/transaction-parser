@@ -17,7 +17,7 @@ class Category < ApplicationRecord
     transactions = if month.nil?
                      Transaction.all
                    else
-                     Transaction.transaction_by_month(month)
+                     Transaction.find_by_month(month)
                    end
     transactions.each do |transaction|
       sums[transaction.category.name] += transaction.amount
