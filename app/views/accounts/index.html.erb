@@ -1,21 +1,25 @@
-<div class='container'>
-  <h1 class='display-4 float-left'>Accounts</h1>
-  <a class='btn btn-dark float-right create-button' href='/accounts/new'>Create</a>
+<div class="container col-6">
+  <div class="row align-items-center justify-content-between">
+    <h1 class="display-4">Accounts</h1>
+    <a class="btn btn-dark" href="/accounts/new">Create</a>
+  </div>
+  <div class="row">
+    <table class="table table-dark table-striped table-bordered table-hover table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @accounts.each do |account| %>
+          <tr data-link="<%= edit_account_path(account) %>">
+            <td><%= account.name %></td>
+            <td><%= number_with_precision(account.amount, precision: 2, delimiter: ",") %></td>
+            <td style="width:65px;"><a class="btn btn-sm btn-secondary" href="<%= edit_account_path(account) %>" style="margin-left:10px;">Edit</a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-<table class='table table-dark table-striped table-bordered table-hover table-sm'>
-  <thead>
-    <tr>
-      <th scope='col'>Name</th>
-      <th scope='col'>Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @accounts.each do |account| %>
-      <tr data-link="<%= edit_account_path(account) %>">
-        <td><%= account.name %></td>
-        <td><%= number_with_precision(account.amount, precision: 2, delimiter: ',') %></td>
-        <td style="width:65px;"><a class='btn btn-sm btn-secondary' href="<%= edit_account_path(account) %>" style="margin-left:10px;">Edit</a></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
