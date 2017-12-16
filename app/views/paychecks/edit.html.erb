@@ -1,0 +1,33 @@
+<h1 class="display-5">Edit <%= @paycheck.date %></h1>
+
+<%= form_for @paycheck do |f| %>
+  <div class="form-group">
+    <%= f.label :date %>
+    <%= f.date_field :date, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :gross_pay %>
+    <%= f.text_field :gross_pay, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :taxes %>
+    <%= f.text_field :taxes, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :roth_401k %>
+    <%= f.text_field :roth_401k, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :tradition_401k %>
+    <%= f.text_field :tradition_401k, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :aspp %>
+    <%= f.text_field :aspp, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :deductions %>
+    <%= f.text_field :deductions, class: 'form-control' %>
+  </div>
+  <%= f.submit :Update, class: 'btn btn-primary btn-dark' %>
+<% end %>

@@ -28,12 +28,12 @@ ActiveRecord::Schema.define(version: 20171216195337) do
 
   create_table "paychecks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.date "date", null: false
-    t.decimal "roth_401k", precision: 10, default: "0"
-    t.decimal "tradition_401k", precision: 10, default: "0"
-    t.decimal "aspp", precision: 10
-    t.decimal "deductions", precision: 10, default: "0"
-    t.decimal "taxes", precision: 10, default: "0"
-    t.decimal "net_pay", precision: 10, null: false
+    t.decimal "gross_pay", precision: 10, scale: 2, null: false
+    t.decimal "roth_401k", precision: 10, scale: 2, default: "0.0"
+    t.decimal "tradition_401k", precision: 10, scale: 2, default: "0.0"
+    t.decimal "aspp", precision: 10, scale: 2, default: "0.0"
+    t.decimal "deductions", precision: 10, scale: 2, default: "0.0"
+    t.decimal "taxes", precision: 10, scale: 2, default: "0.0"
   end
 
   create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

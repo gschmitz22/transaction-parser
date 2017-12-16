@@ -1,22 +1,36 @@
 <div class="container col-7">
   <div class="row align-items-center justify-content-between">
-    <h1 class="display-4">Accounts</h1>
-    <a class="btn btn-dark" href="/accounts/new">Create</a>
+    <h1 class="display-4">Paychecks</h1>
+    <a class="btn btn-dark" href="/paychecks/new">Create</a>
   </div>
   <div class="row">
     <table class="table table-dark table-striped table-bordered table-hover table-sm">
       <thead>
-      <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Taxes</th>
-        <th scope="col">Roth</th>
-        <th scope="col">Traditional</th>
-        <th scope="col">ASPP</th>
-        <th scope="col">Deductions</th>
-        <th scope="col">Net Pay</th>
-      </tr>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Gross Pay</th>
+          <th scope="col">Taxes</th>
+          <th scope="col">Roth</th>
+          <th scope="col">Traditional</th>
+          <th scope="col">ASPP</th>
+          <th scope="col">Deductions</th>
+          <th scope="col">Net Pay</th>
+        </tr>
       </thead>
       <tbody>
+        <% @paychecks.each do |paycheck| %>
+          <tr>
+            <td><%= paycheck.date %></td>
+            <td><%= paycheck.gross_pay %></td>
+            <td><%= paycheck.taxes %></td>
+            <td><%= paycheck.roth_401k %></td>
+            <td><%= paycheck.tradition_401k %></td>
+            <td><%= paycheck.aspp %></td>
+            <td><%= paycheck.deductions %></td>
+            <td><%= paycheck.net_pay %></td>
+            <td style="width:65px;"><a class="btn btn-sm btn-secondary" href="<%= edit_paycheck_path(paycheck) %>" style="margin-left:10px;">Edit</a></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
